@@ -40,5 +40,4 @@ stages:
     jobs:
     - template: ./templates/steps-deploy-template.yml
       parameters:
-        serviceConnectionName: 'PUL-Connection'
         appName:  'pul-yaml-$(studentIdNumber)'

@@ -9,7 +9,6 @@ trigger:
 
 # ----------------------------------------------------------------------------------------------------
 variables:
-  serviceConnectionName: 'PUL-Connection'
   webAppName: 'pul-yaml-999999999'
 
 # ----------------------------------------------------------------------------------------------------
@@ -28,5 +27,4 @@ stages:
   jobs:
   - template: ./templates/steps-deploy-template.yml
     parameters:
-      serviceConnectionName: $(serviceConnectionName)
       appName: $(webAppName)
