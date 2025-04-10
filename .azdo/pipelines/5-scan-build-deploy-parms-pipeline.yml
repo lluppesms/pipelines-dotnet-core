@@ -24,7 +24,7 @@ parameters:
 
 # ----------------------------------------------------------------------------------------------------
 stages:
-- ${{ if eq(parameters.runCodeScan), true) }}:
+- ${{ if eq(parameters.runCodeScan, true) }}:
   - stage: ScanStage
     jobs:
     - template: ./templates/steps-scan-code-template.yml
@@ -35,7 +35,7 @@ stages:
   - template: ./templates/steps-build-template.yml
 
 # ----------------------------------------------------------------------------------------------------
-- ${{ if eq(parameters.deployWebApp), true) }}:
+- ${{ if eq(parameters.deployWebApp, true) }}:
   - stage: DeployStage
     jobs:
     - template: ./templates/steps-deploy-template.yml
