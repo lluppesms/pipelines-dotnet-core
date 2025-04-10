@@ -7,9 +7,11 @@ parameters:
 - name: appName
   default: 'pul-yaml-99999999'
 
-
+jobs:
 - job: DeployJob
   displayName: Deploy
+  pool:
+    name: default
   steps:
     - task: DownloadBuildArtifacts@1
       inputs:

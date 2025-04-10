@@ -1,8 +1,11 @@
 # ----------------------------------------------------------------------------------------------------
 # Build WebApp Template
 # ----------------------------------------------------------------------------------------------------
+jobs:
 - job: BuildJob
   displayName: Build
+  pool:
+    name: default
   variables:
     buildConfiguration: 'Release'
   steps:
