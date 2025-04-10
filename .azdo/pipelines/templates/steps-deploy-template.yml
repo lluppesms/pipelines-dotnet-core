@@ -1,0 +1,27 @@
+# ----------------------------------------------------------------------------------------------------
+# Deploy Web App Template
+# ----------------------------------------------------------------------------------------------------
+parameters:
+- name: serviceConnectionName
+  default: 'PUL-Connection'
+- name: appName
+  default: 'pul-yaml-99999999'
+
+
+- job: DeployJob
+  displayName: Deploy
+  steps:
+    - task: DownloadBuildArtifacts@1
+      inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        artifactName: 'drop'
+        downloadPath: '$(System.ArtifactsDirectory)'
+
+    - task: AzureRmWebAppDeployment@5
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: $(serviceConnectionName)
+        appType: 'webApp'
+        WebAppName: $(appName)
+        packageForLinux: '$(System.ArtifactsDirectory)/drop/*.zip'

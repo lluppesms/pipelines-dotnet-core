@@ -1,0 +1,32 @@
+# ----------------------------------------------------------------------------------------------------
+# Web App Scan-Build-Deploy Pipeline using templates
+# ----------------------------------------------------------------------------------------------------
+name: $(date:yyyy).$(date:MM).$(date:dd)$(rev:.r)
+
+trigger:
+- none   
+# - master
+
+# ----------------------------------------------------------------------------------------------------
+variables:
+  serviceConnectionName: 'PUL-Connection'
+  webAppName: 'pul-yaml-999999999'
+
+# ----------------------------------------------------------------------------------------------------
+stages:
+- stage: ScanStage
+  jobs:
+  - template: ./templates/steps-scan-code-template.yml
+
+# ----------------------------------------------------------------------------------------------------
+- stage: BuildStage
+  jobs:
+  - template: ./templates/steps-scan-code-template.yml
+
+# ----------------------------------------------------------------------------------------------------
+- stage: DeployStage
+  jobs:
+  - template: ./templates/steps-scan-code-template.yml
+    parameters:
+      serviceConnectionName: $(serviceConnectionName)
+      appName: $(webAppName)
