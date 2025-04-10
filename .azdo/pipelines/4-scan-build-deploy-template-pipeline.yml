@@ -21,12 +21,12 @@ stages:
 # ----------------------------------------------------------------------------------------------------
 - stage: BuildStage
   jobs:
-  - template: ./templates/steps-scan-code-template.yml
+  - template: ./templates/steps-build-template.yml
 
 # ----------------------------------------------------------------------------------------------------
 - stage: DeployStage
   jobs:
-  - template: ./templates/steps-scan-code-template.yml
+  - template: ./templates/steps-deploy-template.yml
     parameters:
       serviceConnectionName: $(serviceConnectionName)
       appName: $(webAppName)

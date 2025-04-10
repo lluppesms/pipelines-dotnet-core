@@ -32,13 +32,13 @@ stages:
 # ----------------------------------------------------------------------------------------------------
 - stage: BuildStage
   jobs:
-  - template: ./templates/steps-scan-code-template.yml
+  - template: ./templates/steps-build-template.yml
 
 # ----------------------------------------------------------------------------------------------------
 - ${{ if eq(parameters.deployWebApp), true) }}:
   - stage: DeployStage
     jobs:
-    - template: ./templates/steps-scan-code-template.yml
+    - template: ./templates/steps-deploy-template.yml
       parameters:
         serviceConnectionName: 'PUL-Connection'
         appName:  'pul-yaml-$(studentIdNumber)'
