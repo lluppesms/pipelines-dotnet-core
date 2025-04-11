@@ -1,7 +1,7 @@
 
 # Azure DevOps Essentials: Module 4 – Additional Labs
 
-## Lab 4
+## Lab 4 - Combine the Build and Scan Jobs
 
 In this lab, you will combine the Build and Scan into one Job.
 

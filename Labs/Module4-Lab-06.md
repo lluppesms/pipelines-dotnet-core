@@ -1,7 +1,7 @@
 
 # Azure DevOps Essentials: Module 4 – Additional Labs
 
-## Lab 6
+## Lab 6 - Create a Pull Request Pipeline
 
 In this lab, we will create the pipeline that can be used whenever a Pull Request is created.  This pipeline will be used to build and and scan the code.
 

@@ -1,6 +1,6 @@
 # Azure DevOps Essentials: Module 4 – Additional Labs
 
-## Lab 3
+## Lab 3 - Add a Code Scan to the Pipeline
 
 ### Task 1: Add a Code Scan Section
 

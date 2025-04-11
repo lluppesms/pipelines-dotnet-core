@@ -1,7 +1,7 @@
 
 # Azure DevOps Essentials: Module 4 – Additional Labs
 
-## Lab 2
+## Lab 2 - Add a Run-Time Parameter to the Pipeline
 
 In this lab, you will add a run-time parameter to ask the user whether or not they want to actually deploy the app to Azure.
 

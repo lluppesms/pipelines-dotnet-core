@@ -2,8 +2,8 @@
 
 ## Module 4 – Additional Labs
 
-- [Module 4 – Lab 2](./Module4-Lab-02.md)
-- [Module 4 – Lab 3](./Module4-Lab-03.md)
-- [Module 4 – Lab 4](./Module4-Lab-04.md)
-- [Module 4 – Lab 5](./Module4-Lab-05.md)
-- [Module 4 – Lab 6](./Module4-Lab-06.md)
+- [Lab 2 - Add a Run-Time Parameter to the Pipeline](./Module4-Lab-02.md)
+- [Lab 3 - Add a Code Scan to the Pipeline](./Module4-Lab-03.md)
+- [Lab 4 - Combine the Build and Scan Jobs](./Module4-Lab-04.md)
+- [Lab 5 - Use Templates in the Pipeline](./Module4-Lab-05.md)
+- [Lab 6 - Create a Pull Request Pipeline](./Module4-Lab-06.md)

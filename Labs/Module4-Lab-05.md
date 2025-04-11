@@ -1,7 +1,7 @@
 
 # Azure DevOps Essentials: Module 4 – Additional Labs
 
-## Lab 5
+## Lab 5 - Use Templates in the Pipeline
 
 In this lab, we will change the pipeline to use templates for all of the actions.
 
