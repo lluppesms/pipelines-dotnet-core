@@ -1,30 +1,77 @@
 # ----------------------------------------------------------------------------------------------------
-# Web App Scan-Build-Deploy Pipeline using templates
+# Web App Scan-Build-Deploy Pipeline using a template
 # ----------------------------------------------------------------------------------------------------
-name: $(date:yyyy).$(date:MM).$(date:dd)$(rev:.r)
-
 trigger:
-- none   
-# - master
+- none   # - master
 
-# ----------------------------------------------------------------------------------------------------
 variables:
-  webAppName: 'pul-yaml-999999999'
+    buildConfiguration: 'Release'
+
+parameters:
+- name: deployWebApp
+  displayName: Deploy Web App
+  type: boolean
+  default: true
+- name: studentIdNumber
+  displayName: Student ID Number
+  type: number
+  default: 999999999
 
 # ----------------------------------------------------------------------------------------------------
 stages:
-- stage: ScanStage
+- stage: ScanAndBuildStage
   jobs:
-  - template: ./templates/steps-scan-code-template.yml
+  - template: ./azdo/pipeline/templates/steps-scan-code-template.yml
+
+  - job: BuildJob
+    pool:
+      name: default
+    steps:
+    - script: dotnet restore
+    - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        command: build
+        projects: '**/*.csproj'
+        arguments: '--configuration Release'
+    - task: DotNetCoreCLI@2
+      displayName: Test
+      inputs:
+        command: test
+        projects: '**/*Tests/*.csproj'
+        arguments: '--configuration $(BuildConfiguration)'
+    - task: DotNetCoreCLI@2
+      displayName: Publish
+      inputs:
+        command: publish
+        publishWebProjects: True
+        arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+        zipAfterPublish: True     
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact'
+      inputs:
+        PathtoPublish: '$(build.artifactstagingdirectory)'
+        ArtifactName: 'drop'
+    condition: succeededOrFailed()
 
 # ----------------------------------------------------------------------------------------------------
-- stage: BuildStage
-  jobs:
-  - template: ./templates/steps-build-template.yml
-
-# ----------------------------------------------------------------------------------------------------
-- stage: DeployStage
-  jobs:
-  - template: ./templates/steps-deploy-template.yml
-    parameters:
-      appName: $(webAppName)
+- ${{ if eq(parameters.deployWebApp, true) }}:
+  - stage: DeployStage
+    jobs:
+    - job: DeployJob
+      pool:
+        name: default
+      steps:
+      - task: DownloadBuildArtifacts@1
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'drop'
+          downloadPath: '$(System.ArtifactsDirectory)'
+      - task: AzureRmWebAppDeployment@5
+        inputs:
+          ConnectionType: 'AzureRM'
+          azureSubscription: 'PUL-Connection'
+          appType: 'webApp'
+          WebAppName: 'pul-yaml-$(studentIdNumber)'
+          packageForLinux: '$(System.ArtifactsDirectory)/drop/*.zip'

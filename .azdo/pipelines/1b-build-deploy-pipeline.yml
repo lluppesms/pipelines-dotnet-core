@@ -2,8 +2,7 @@
 # Web App Build-Deploy Pipeline
 # ----------------------------------------------------------------------------------------------------
 trigger:
-- none   
-# - master
+- none   # - master
 
 variables:
     buildConfiguration: 'Release'

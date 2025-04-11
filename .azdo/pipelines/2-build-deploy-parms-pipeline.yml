@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------------------------------
-# Web App Scan-Build-Deploy Pipeline with parameters
+# Web App Build-Deploy with a Parameter Pipeline
 # ----------------------------------------------------------------------------------------------------
 trigger:
 - none   # - master
@@ -19,11 +19,6 @@ parameters:
 
 # ----------------------------------------------------------------------------------------------------
 stages:
-- stage: ScanStage
-  jobs:
-  - template: ./azdo/pipeline/templates/steps-scan-code-template.yml
-  
-# ----------------------------------------------------------------------------------------------------
 - stage: BuildStage
   jobs:
   - job: BuildJob
