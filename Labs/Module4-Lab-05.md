@@ -38,7 +38,9 @@ Add a conditional statement before the scan stage, making sure to indent it corr
 
 ### Task 3: Create a Build Stage with a template
 
-Replace all of the build stage code with a simple call to a build template.
+Replace all of the build stage code with a simple call to a build template.  
+
+> Note: you may have to adjust the path to the template to match where you saved it.
 
 ``` yaml
 - stage: BuildStage
@@ -51,6 +53,8 @@ Replace all of the build stage code with a simple call to a build template.
 ### Task 4: Create a Deploy Stage with a template and a parameter
 
 Replace all of the deploy code with a template and add a parameter for the student number.  Keep the conditional statement for the deploy stage.
+
+> Note: you may have to adjust the path to the template to match where you saved it.
 
 ``` yaml
 - ${{ if eq(parameters.deployWebApp, true) }}:

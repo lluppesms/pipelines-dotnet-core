@@ -16,7 +16,9 @@ In this lab, we will create the pipeline that can be used whenever a Pull Reques
 
 ### Task 2: Add the appropriate steps to the file
 
-Replace the code provided with the following.  Note: you may have to adjust the template paths to match where you saved your template.
+Replace the code provided with the following.  
+
+> Note: you may have to adjust the path to the template to match where you saved it.
 
 ``` yaml
 # ----------------------------------------------------------------------------------------------------
@@ -49,7 +51,6 @@ jobs:
 ---
 
 ### Task 3: Register your new pipeline
-
 
 Click into the file name field and change the name of the file to be saved to `pr-scan-build.yml`, then click on the More options button and select `Save` and commit this to your main branch.
 
@@ -92,7 +93,8 @@ If you were to go over to the pipeline and view the details, you should be able 
     ![pipeline triggered by PR](./images/230_build_triggered_by_pr.png)
 
 Once the pipeline has completed, you should see the results in the PR now!
-    ![ready pull request](./images/240_pull_request_ready.png)
+
+![ready pull request](./images/240_pull_request_ready.png)
 
 ---
 
