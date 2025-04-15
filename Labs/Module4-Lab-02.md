@@ -47,7 +47,7 @@ If you want, you can change the trigger to be `none` so that it does not run aut
 
 When you are done, it should look something like this:
 
-![Parmameter Example](./images/Parameter-Example.png)
+![Parmameter Example](./images/Parameter-Example-2.png)
 
 ---
 
