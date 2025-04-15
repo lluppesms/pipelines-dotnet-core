@@ -40,8 +40,9 @@ Remember that YML is indentation-sensitive, so make sure to indent all of the `D
 IN the `task: AzureRmWebAppDeployment@5` task, change the `WebAppName` section to look like the following.  This will use the `studentIdNumber` parameter to create a unique name for the web app.
 
 ``` yaml
-WebAppName: 'pul-yaml-$(studentIdNumber)'
+WebAppName: 'pul-yaml-${{ parameters.studentIdNumber }}'
 ```
+
 If you want, you can change the trigger to be `none` so that it does not run automatically when you push changes to the repo.  This is not required, but it will make it easier to test your changes.
 
 When you are done, it should look something like this:

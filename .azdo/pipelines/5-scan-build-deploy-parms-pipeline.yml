@@ -39,4 +39,4 @@ stages:
     jobs:
     - template: ./templates/steps-deploy-template.yml
       parameters:
-        appName:  'pul-yaml-$(studentIdNumber)'
+        appName:  'pul-yaml-${{ parameters.studentIdNumber }}'

@@ -13,7 +13,9 @@ stages:
   jobs:
   - job: BuildJob
     pool:
-      name: default
+      #name: default
+      vmimage: 'unbuntu-latest'
+
     steps:
     - script: dotnet restore
     - task: DotNetCoreCLI@2

@@ -71,5 +71,5 @@ stages:
           ConnectionType: 'AzureRM'
           azureSubscription: 'PUL-Connection'
           appType: 'webApp'
-          WebAppName: 'pul-yaml-$(studentIdNumber)'
+          WebAppName: 'pul-yaml-${{ parameters.studentIdNumber }}'
           packageForLinux: '$(System.ArtifactsDirectory)/drop/*.zip'

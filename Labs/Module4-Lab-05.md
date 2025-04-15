@@ -62,7 +62,7 @@ Replace all of the deploy code with a template and add a parameter for the stude
     jobs:
     - template: ./templates/steps-deploy-template.yml
       parameters:
-        appName:  'pul-yaml-$(studentIdNumber)'
+        appName:  'pul-yaml-${{ parameters.studentIdNumber }}'
 ```
 
 ---
