@@ -3,8 +3,8 @@ resource_groups = {
     name     = "#{resourceGroupPrefix}#-#{env}#"
     location = "#{location}#"
     tags = {
-      created_by  = "#{ownerName}#"
-      contact_dl  = "#{ownerEmail}#"
+      created_by  = "#{requestorName}#"
+      contact_dl  = "#{requestorEmail}#"
       Application = "Terraform Test"
     }
   }
