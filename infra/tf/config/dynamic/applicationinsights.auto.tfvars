@@ -2,7 +2,7 @@ app_insights_resource_group_name = "#{resourceGroupPrefix}#-#{env}#"
 
 application_insights = {
   appinsight1 = {
-    name                                  = "#{appName}#-app-ins-#{env}#" # <"application_insights_name">
+    name                                  = "#{appName}#-appinsites-#{env}#" # <"application_insights_name">
     application_type                      = "web"                       # <"application_insights_type">
     retention_in_days                     = 60                          # <"application_insights_retention_period_in_days"
     daily_data_cap_in_gb                  = null                        # <"application_insights_daily_data_volume_cap_in_gb"

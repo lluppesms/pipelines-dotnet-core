@@ -1,4 +1,4 @@
 resource_group_name  = "rg-tfstate-ado"
-storage_account_name = "llltfsatfstate1"
+storage_account_name = "tfsatfstate1"
 container_name       = "tfstate"
 key                  = "dev-tfstate"

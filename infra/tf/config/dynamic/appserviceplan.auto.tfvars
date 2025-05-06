@@ -1,5 +1,5 @@
 resource_group_name       = "#{resourceGroupPrefix}#-#{env}#"
-application_insights_name = "#{appName}#-app-ins-#{env}#"
+application_insights_name = "#{appName}#-appinsites-#{env}#"
 ado_resource_group_name   = null #set this to null if you don't want to use key vault secret in app settings
 ado_key_vault_name        = null #set this to null if you don't want to use key vault secret in app settings
 key_vault_secret_name     = null #set this to null if you don't want to use key vault secret in app settings
@@ -14,7 +14,7 @@ app_services = {
     app_settings = {
       #  "WEBSITE_DNS_SERVER" = "168.63.129.16"
       #  "WEBSITE_VNET_ROUTE_ALL"= "1"
-       "WEBSITE_PORT" = "80"
+      "WEBSITE_PORT" = "80"
       #  "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
       #  "DOCKER_REGISTRY_SERVER_URL"      = "https://appsvtest2020.azurecr.io"
       #  "DOCKER_REGISTRY_SERVER_USERNAME" = "appsvtest2020"
@@ -131,5 +131,5 @@ app_service_additional_tags = {
 #   #  app_service_key = "as1"
 #   #  ssl_state       = "SniEnabled"
 #   # }
-  # }
+# }
 
