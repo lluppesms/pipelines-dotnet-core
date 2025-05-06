@@ -45,7 +45,7 @@ Replace all of the build stage code with a simple call to a build template.
 ``` yaml
 - stage: BuildStage
   jobs:
-  - template: ./templates/steps-build-template.yml
+  - template: ./.azdo/pipelines/templates/steps-build-template.yml
 ```
 
 ---
@@ -60,7 +60,7 @@ Replace all of the deploy code with a template and add a parameter for the stude
 - ${{ if eq(parameters.deployWebApp, true) }}:
   - stage: DeployStage
     jobs:
-    - template: ./templates/steps-deploy-template.yml
+    - template: ./.azdo/pipelines/templates/steps-deploy-template.yml
       parameters:
         appName:  'pul-yaml-${{ parameters.studentIdNumber }}'
 ```

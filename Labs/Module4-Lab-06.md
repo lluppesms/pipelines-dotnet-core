@@ -3,7 +3,7 @@
 
 ## Lab 6 - Create a Pull Request Pipeline
 
-In this lab, we will create the pipeline that can be used whenever a Pull Request is created.  This pipeline will be used to build and and scan the code.
+In this lab, we will create the pipeline that can be used whenever a Pull Request is created.  This pipeline will be used to build and scan the code.
 
 ---
 
@@ -38,14 +38,14 @@ jobs:
 - stage: ScanApplication
   displayName: Scan Application
   jobs:
-  - template: ./templates/steps-scan-code-template.yml
+  - template: ./.azdo/pipelines/templates/steps-scan-code-template.yml
 
 # ----------------------------------------------------------------------------------------------------
 - stage: BuildApplication
   displayName: Build Application
   dependsOn: ScanApplication
   jobs:
-  - template: ./templates/steps-build-template.yml
+  - template: ./.azdo/pipelines/templates/steps-build-template.yml
 ```
 
 ---

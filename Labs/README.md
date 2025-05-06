@@ -8,6 +8,12 @@
 - [Lab 5 - Use Templates in the Pipeline](./Module4-Lab-05.md)
 - [Lab 6 - Create a Pull Request Pipeline](./Module4-Lab-06.md)
 
+## Module 4 – Terraform Labs
+
+- [Lab 1 - Run Terraform locally](./Terraform_Labs/lab01.md)
+- [Lab 2 - Run Terraform Locally with a remote state file](./Terraform_Labs/lab01.md)
+- [Lab 3 - Run in a pipeline](./Terraform_Labs/lab01.md)
+
 Additional labs and resources can be found in the following locations:
 
 - [Azure DevOps Labs](https://www.azuredevopslabs.com/)
