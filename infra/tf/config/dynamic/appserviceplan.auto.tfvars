@@ -2,9 +2,9 @@ resource_group_name       = "#{resourceGroupPrefix}#-#{env}#"
 application_insights_name = "#{appName}#-app-ins-#{env}#"
 ado_resource_group_name   = null #set this to null if you don't want to use key vault secret in app settings
 ado_key_vault_name        = null #set this to null if you don't want to use key vault secret in app settings
-key_vault_secret_name     = null#"test" #set this to null if you don't want to use key vault secret in app settings
+key_vault_secret_name     = null #set this to null if you don't want to use key vault secret in app settings
 ado_subscription_id       = null
-acr_secret_name           = null#"test"
+acr_secret_name           = null
 
 
 app_services = {
@@ -12,12 +12,12 @@ app_services = {
     name                 = "#{appName}#-appsvc-#{env}#"
     app_service_plan_key = "asp1"
     app_settings = {
-       "WEBSITE_DNS_SERVER" = "168.63.129.16"
-       "WEBSITE_VNET_ROUTE_ALL"= "1"
+      #  "WEBSITE_DNS_SERVER" = "168.63.129.16"
+      #  "WEBSITE_VNET_ROUTE_ALL"= "1"
        "WEBSITE_PORT" = "80"
-       "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
-       #"DOCKER_REGISTRY_SERVER_URL"      = "https://appsvtest2020.azurecr.io"
-       #"DOCKER_REGISTRY_SERVER_USERNAME" = "appsvtest2020"
+      #  "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
+      #  "DOCKER_REGISTRY_SERVER_URL"      = "https://appsvtest2020.azurecr.io"
+      #  "DOCKER_REGISTRY_SERVER_USERNAME" = "appsvtest2020"
     }
     client_affinity_enabled = null
     client_cert_enabled     = null
@@ -91,45 +91,45 @@ app_service_additional_tags = {
   pe_enable = false
 }
 
-vnet_swift_connection = {
-  connection1 = {
-    app_service_key = "as1"
-    subnet_name      = "appservice" 
-  }
-}
+# vnet_swift_connection = {
+#   connection1 = {
+#     app_service_key = "as1"
+#     subnet_name      = "appservice" 
+#   }
+# }
 
 
-app_service_slot = {
-  slot1 = {
-    name                 = "#{appName}#-slot-#{env}#"
-    app_service_plan_key = "asp1"
-    app_service_key     = "as1"
-}
-}
+# app_service_slot = {
+#   slot1 = {
+#     name                 = "#{appName}#-slot-#{env}#"
+#     app_service_plan_key = "asp1"
+#     app_service_key     = "as1"
+# }
+# }
 
-appsvc_slot_vnet_integration = {
-integration1 = {
-   appsvc_slot_key  = "slot1" 
-   app_service_key  = "as1"
-   subnet_name      =  "appservice"
-}
-}
+# appsvc_slot_vnet_integration = {
+# integration1 = {
+#    appsvc_slot_key  = "slot1" 
+#    app_service_key  = "as1"
+#    subnet_name      =  "appservice"
+# }
+# }
 
-app_service_certificate = {
-  # cert1 = {
-  #  key_vault_secret_name = "appgwclientcert"
-  #  certificate_name      = "appgwclientcert"
-  #  app_service_key       = "as1" 
+# app_service_certificate = {
+#   # cert1 = {
+#   #  key_vault_secret_name = "appgwclientcert"
+#   #  certificate_name      = "appgwclientcert"
+#   #  app_service_key       = "as1" 
+#   # }
+#  }
+
+
+# custom_hostname_bindings = {
+#   # binding2 = {
+#   #  kv_cert_name = "appgwclientcert"
+#   #  hostname     = "testnew.azurewebsites.net"
+#   #  app_service_key = "as1"
+#   #  ssl_state       = "SniEnabled"
+#   # }
   # }
- }
-
-
-custom_hostname_bindings = {
-  # binding2 = {
-  #  kv_cert_name = "appgwclientcert"
-  #  hostname     = "testnew.azurewebsites.net"
-  #  app_service_key = "as1"
-  #  ssl_state       = "SniEnabled"
-  # }
-}
 
