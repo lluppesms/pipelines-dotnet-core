@@ -1,4 +1,3 @@
-
 # Azure DevOps Essentials: Module 4 – Additional Labs
 
 ## Lab 5 - Use Templates in the Pipeline
@@ -7,7 +6,7 @@ In this lab, we will change the pipeline to use templates for all of the actions
 
 ---
 
-### Task 1: Add a Name to the Pipeline
+### Task 5.1: Add a Name to the Pipeline
 
 You can make the name that is displayed in the Azure DevOps pipeline pages more meaningful by adding a custom name to the pipeline.  This is done by adding a `name` property to the pipeline. This name can include variables like the date or the build number.  Add this line at the top of your pipeline.
 
@@ -17,7 +16,7 @@ name: $(date:yyyy).$(date:MM).$(date:dd)$(rev:.r)
 
 ---
 
-### Task 2: Add a Scan Parameter
+### Task 5.2: Add a Scan Parameter
 
 Add another parameter to the pipeline to choose whether to perform the scan or not.
 
@@ -36,7 +35,7 @@ Add a conditional statement before the scan stage, making sure to indent it corr
 
 ---
 
-### Task 3: Create a Build Stage with a template
+### Task 5.3: Create a Build Stage with a template
 
 Replace all of the build stage code with a simple call to a build template.  
 
@@ -50,7 +49,7 @@ Replace all of the build stage code with a simple call to a build template.
 
 ---
 
-### Task 4: Create a Deploy Stage with a template and a parameter
+### Task 5.4: Create a Deploy Stage with a template and a parameter
 
 Replace all of the deploy code with a template and add a parameter for the student number.  Keep the conditional statement for the deploy stage.
 
@@ -67,7 +66,7 @@ Replace all of the deploy code with a template and add a parameter for the stude
 
 ---
 
-### Task 4: Give it a test
+### Task 5.4: Give it a test
 
 Run the pipeline and verify that it works as expected.
 

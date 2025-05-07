@@ -2,7 +2,7 @@
 
 ## Lab 3 - Add a Code Scan to the Pipeline
 
-### Task 1: Add a Code Scan Section
+### Task 3.1: Add a Code Scan Section
 
 Insert this code before the “stage: build” line – this will create a new stage for scanning your source code
 
@@ -18,7 +18,7 @@ When you click `Validate and Save`, you may get this error if you haven’t inst
 
 ---
 
-### Task 2: Install the Microsoft Security DevOps Extension
+### Task 3.2: Install the Microsoft Security DevOps Extension
 
 To install a new Extensions, go to the Org Settings – Extensions tab and click on the “Browse Marketplace” button.
 
@@ -42,7 +42,7 @@ Repeat this procedure and install the “Code Search” and “SARIF SAST Scans 
 
 ---
 
-### Task 3: Run the Pipeline
+### Task 3.3: Run the Pipeline
 
 Run this pipeline and you should see three tasks running and completing now.  The scan job may have warnings, but it has been set to continue even if there is an error, so don't worry about that.
 

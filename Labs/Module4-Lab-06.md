@@ -1,4 +1,3 @@
-
 # Azure DevOps Essentials: Module 4 – Additional Labs
 
 ## Lab 6 - Create a Pull Request Pipeline
@@ -7,14 +6,14 @@ In this lab, we will create the pipeline that can be used whenever a Pull Reques
 
 ---
 
-### Task 1: Create a new pipeline file
+### Task 6.1: Create a new pipeline file
 
 1. Goto Pipelines -> Pipelines -> New pipeline
 1. Select `Azure Repos Git (YAML)`
 1. Select your repository
 1. Select `Starter Pipeline`
 
-### Task 2: Add the appropriate steps to the file
+### Task 6.2: Add the appropriate steps to the file
 
 Replace the code provided with the following.  
 
@@ -50,7 +49,7 @@ jobs:
 
 ---
 
-### Task 3: Register your new pipeline
+### Task 6.3: Register your new pipeline
 
 Click into the file name field and change the name of the file to be saved to `pr-scan-build.yml`, then click on the More options button and select `Save` and commit this to your main branch.
 

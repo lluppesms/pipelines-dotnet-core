@@ -1,11 +1,10 @@
-
 # Azure DevOps Essentials: Module 4 – Additional Labs
 
 ## Lab 2 - Add a Run-Time Parameter to the Pipeline
 
 In this lab, you will add a run-time parameter to ask the user whether or not they want to actually deploy the app to Azure.
 
-### Task 1: Add a run-time parameter to the pipeline
+### Task 2.1: Add a run-time parameter to the pipeline
 
 Insert the following code at the top of the `azure-pipelines.yml` file, right after the `trigger` section.  Change the default value of `999999999` to your student ID number.
 
@@ -23,7 +22,7 @@ parameters:
 
 ---
 
-### Task 2: Add a condition to the Deploy stage
+### Task 2.2: Add a condition to the Deploy stage
 
 Insert this code right before the `stage: DeployStage` statement:
 
@@ -35,7 +34,7 @@ Remember that YML is indentation-sensitive, so make sure to indent all of the `D
 
 ---
 
-### Task 3: Make the Student ID Number a variable
+### Task 2.3: Make the Student ID Number a variable
 
 IN the `task: AzureRmWebAppDeployment@5` task, change the `WebAppName` section to look like the following.  This will use the `studentIdNumber` parameter to create a unique name for the web app.
 
