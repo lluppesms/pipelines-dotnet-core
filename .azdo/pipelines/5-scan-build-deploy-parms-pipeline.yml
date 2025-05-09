@@ -26,17 +26,17 @@ stages:
 - ${{ if eq(parameters.runCodeScan, true) }}:
   - stage: ScanStage
     jobs:
-    - template: ./templates/steps-scan-code-template.yml
+    - template: ./templates/steps/scan-code-template.yml
 
 # ----------------------------------------------------------------------------------------------------
 - stage: BuildStage
   jobs:
-  - template: ./templates/steps-build-template.yml
+  - template: ./templates/steps/build-template.yml
 
 # ----------------------------------------------------------------------------------------------------
 - ${{ if eq(parameters.deployWebApp, true) }}:
   - stage: DeployStage
     jobs:
-    - template: ./templates/steps-deploy-template.yml
+    - template: ./templates/steps/deploy-template.yml
       parameters:
         appName:  'pul-yaml-${{ parameters.studentIdNumber }}'

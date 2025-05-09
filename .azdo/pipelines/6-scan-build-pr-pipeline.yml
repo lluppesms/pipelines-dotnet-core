@@ -15,11 +15,11 @@ jobs:
 - stage: ScanApplication
   displayName: Scan Application
   jobs:
-  - template: ./templates/steps-scan-code-template.yml
+  - template: ./templates/steps/scan-code-template.yml
 
 # ----------------------------------------------------------------------------------------------------
 - stage: BuildApplication
   displayName: Build Application
   dependsOn: ScanApplication
   jobs:
-  - template: ./templates/steps-build-template.yml
+  - template: ./templates/steps/build-template.yml

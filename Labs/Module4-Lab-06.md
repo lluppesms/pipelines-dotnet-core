@@ -37,14 +37,14 @@ jobs:
 - stage: ScanApplication
   displayName: Scan Application
   jobs:
-  - template: ./.azdo/pipelines/templates/steps-scan-code-template.yml
+  - template: ./.azdo/pipelines/templates/steps/scan-code-template.yml
 
 # ----------------------------------------------------------------------------------------------------
 - stage: BuildApplication
   displayName: Build Application
   dependsOn: ScanApplication
   jobs:
-  - template: ./.azdo/pipelines/templates/steps-build-template.yml
+  - template: ./.azdo/pipelines/templates/steps/build-template.yml
 ```
 
 ---

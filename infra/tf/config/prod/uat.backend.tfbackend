@@ -1,4 +1,0 @@
-resource_group_name  = "ado-tf-rg-uat"
-storage_account_name = "satfstate23508uat"
-container_name       = "tfstate-uat"
-key                  = "poc-tfstate"

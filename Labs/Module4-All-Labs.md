@@ -72,7 +72,7 @@ Insert this code before the “stage: build” line – this will create a new s
 ``` yaml
 - stage: ScanStage
   jobs:
-  - template: ./azdo/pipelines/templates/steps-scan-code-template.yml
+  - template: ./azdo/pipelines/templates/steps/scan-code-template.yml
 ```
 
 When you click `Validate and Save`, you may get this error if you haven’t installed the extension yet:
@@ -175,7 +175,7 @@ Replace all of the build stage code with a simple call to a build template.
 ``` yaml
 - stage: BuildStage
   jobs:
-  - template: ./.azdo/pipelines/templates/steps-build-template.yml
+  - template: ./.azdo/pipelines/templates/steps/build-template.yml
 ```
 
 ---
@@ -190,7 +190,7 @@ Replace all of the deploy code with a template and add a parameter for the stude
 - ${{ if eq(parameters.deployWebApp, true) }}:
   - stage: DeployStage
     jobs:
-    - template: ./.azdo/pipelines/templates/steps-deploy-template.yml
+    - template: ./.azdo/pipelines/templates/steps/deploy-template.yml
       parameters:
         appName:  'pul-yaml-${{ parameters.studentIdNumber }}'
 ```
@@ -240,14 +240,14 @@ jobs:
 - stage: ScanApplication
   displayName: Scan Application
   jobs:
-  - template: ./.azdo/pipelines/templates/steps-scan-code-template.yml
+  - template: ./.azdo/pipelines/templates/steps/scan-code-template.yml
 
 # ----------------------------------------------------------------------------------------------------
 - stage: BuildApplication
   displayName: Build Application
   dependsOn: ScanApplication
   jobs:
-  - template: ./.azdo/pipelines/templates/steps-build-template.yml
+  - template: ./.azdo/pipelines/templates/steps/build-template.yml
 ```
 
 ---

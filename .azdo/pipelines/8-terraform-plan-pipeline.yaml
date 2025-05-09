@@ -20,15 +20,6 @@ parameters:
     - prod
   default: dev
 
-- name: variableSetName
-  displayName: Variable Set to Use
-  type: string
-  values:
-    - dev
-    - prod
-    - dynamic
-  default: dynamic
-
 - name: tfAction
   displayName: Terraform Action
   type: string
@@ -44,21 +35,13 @@ variables:
 # ----------------------------------------------------------------------------------------------------
 jobs:
 - ${{ if eq(parameters.tfAction, 'plan') }}:
-  - template: ./templates/tf-job-init-and-plan-template.yaml
+  - template: ./templates/jobs/tf-plan-mi-template.yml
     parameters:
       env: ${{ parameters.deployToEnvironment }}
       serviceConnectionName: $(serviceConnectionName)
-      variableSetName: ${{ parameters.variableSetName }}
-      terraFormPath: '/infra/tf'
-      configFolderName: 'config/${{ parameters.variableSetName }}'
-      backendConfigFileName: '${{ parameters.variableSetName }}.backend.tfbackend'
 
 - ${{ if eq(parameters.tfAction, 'apply') }}:
-  - template: ./templates/tf-job-apply-template.yaml
+  - template: ./templates/jobs/tf-apply-mi-template.yml
     parameters:
       env: ${{ parameters.deployToEnvironment }}
       serviceConnectionName: $(serviceConnectionName)
-      variableSetName: ${{ parameters.variableSetName }}
-      terraFormPath: '/infra/tf'
-      configFolderName: 'config/${{ parameters.variableSetName }}'
-      backendConfigFileName: '${{ parameters.variableSetName }}.backend.tfbackend'

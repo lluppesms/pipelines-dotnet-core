@@ -2,25 +2,18 @@
 # Reusable template to run a Terraform Init and Plan
 # ----------------------------------------------------------------------------------------------------
 # This variable group is needed in Azure DevOps:
-#    az login
 #    az pipelines variable-group create 
 #      --organization=https://dev.azure.com/<yourAzDOOrg>/ 
 #      --project='<yourAzDOProject>' 
 #      --name TF-Var-Group-1 
 #      --variables 
-#          subscriptionId='<yourValue>'
-#          tenantId='<yourValue>'
-#          clientId='<yourValue>'
-#          clientSecret='<yourValue>'
-#          tfStateResourceGroup='<yourValue>'                   <-- like rg-tfstate-ado
+#          tfStateResourceGroup='<yourValue>'                   <-- like rg-tf-state-ado
 #          tfStateStorageAccount='<globallyUniqueStorageName>'  <-- globally unique name for storage account
 # ----------------------------------------------------------------------------------------------------
 parameters:
 - name: env
   type: string
 - name: serviceConnectionName
-  type: string
-- name: variableSetName
   type: string
 
 - name: terraFormPath
@@ -36,7 +29,7 @@ parameters:
 
 - name: backendConfigFileName
   type: string
-  default: ''
+  default: 'dynamic.backend.tfbackend'
 
 # ----------------------------------------------------------------------------------------------------
 jobs:
@@ -45,7 +38,11 @@ jobs:
 
   variables:
     - group: TF-Var-Group-1
-    - template: ../vars/var-common.yml
+    - template: ../../vars/var-common.yml
+    - ${{ if eq(lower(parameters.env), 'dev') }}:
+      - template: ../../vars/var-dev.yml
+    - ${{ if eq(lower(parameters.env), 'prod') }}:
+      - template: ../../vars/var-prod.yml
 
     - name: env
       value: ${{ parameters.env }}
@@ -72,29 +69,22 @@ jobs:
   steps:
   - checkout: self
 
-  - template: tf-steps-cli-login-template.yml
+  - template: ../steps/tf-display-info-template.yml
 
-  - template: tf-steps-display-info-template.yml
+  - template: ../steps/tf-replace-variables-template.yml
+    parameters:
+      backendConfigFileFullPath: $(backendConfigFileFullPath)
 
-  - ${{ if eq(parameters.variableSetName, 'dynamic') }}:
-    - template: tf-steps-replace-variables-template.yml
-      parameters:
-        backendConfigFileFullPath: $(backendConfigFileFullPath)
+  - template: ../steps/tf-init-template.yml
 
-  - template: tf-steps-install-init-template.yml
-
-  - task: Bash@3
+  - task: AzureCLI@2
     displayName: Create TF Plan
-    continueOnError: true  # we don't need this once everything is working...!  just enabled for debugging/testing!
-    env:
-      ARM_SUBSCRIPTION_ID: $(subscriptionId)
-      ARM_TENANT_ID: $(tenantId)
-      ARM_CLIENT_ID: $(clientId)
-      ARM_CLIENT_SECRET: $(clientSecret)
     inputs:
-      targetType: 'inline'
+      azureSubscription: $(serviceConnectionName)
+      scriptType: bash
+      scriptLocation: inlineScript
       workingDirectory: $(scriptsWorkingDirectory)
-      script: |
+      inlineScript: |
         echo "Executing: terraform plan -var-file=$(configWorkingDirectory)/*.tfvars"
         find $(configWorkingDirectory) -name "*.tfvars" -exec echo   -var-file={} \;
         terraform plan $(find $(configWorkingDirectory) -name "*.tfvars" -exec echo -var-file={} \;) -out tfplan
@@ -106,4 +96,4 @@ jobs:
       PathtoPublish: '$(scriptsWorkingDirectory)/tfplan'
       ArtifactName: 'tfplan'
 
-  - template: tf-steps-display-info-template.yml
+  - template: ../steps/tf-display-info-template.yml

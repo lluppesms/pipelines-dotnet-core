@@ -1,0 +1,63 @@
+# ------------------------------------------------------------------------------------------------------------------------
+# Pipeline Steps Template -- steps to bootstrap a Terraform Storage Account and Container for remote state
+# ------------------------------------------------------------------------------------------------------------------------
+parameters:
+  - name: actionToTake
+    default: 'create' # create or delete
+
+steps:
+# - template: ../steps/tf-login-template.yml
+
+- ${{ if eq(parameters.actionToTake, 'create') }}:
+  # - task: Bash@3
+  #   displayName: Create TF State Storage
+  #   env:
+  #     ARM_SUBSCRIPTION_ID: $(subscriptionId)
+  #     ARM_TENANT_ID: $(tenantId)
+  #     ARM_CLIENT_ID: $(clientId)
+  #     ARM_CLIENT_SECRET: $(clientSecret)
+  #   inputs:
+  #     targetType: 'inline'
+  #     script: |
+  - task: AzureCLI@2
+    displayName: Create TF State Storage
+    inputs:
+      azureSubscription: $(serviceConnectionName)
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        if az storage account show --resource-group $(tfStateResourceGroup) --name $(tfStateStorageAccount) --query "provisioningState" -o tsv; then
+          echo "Storage Account $(tfStateStorageAccount) already exists in $(tfStateResourceGroup)!"
+        else
+          echo "Creating new Resource Group $(tfStateResourceGroup)..."
+          az group create --name $(tfStateResourceGroup) --location $(location)
+          echo "Creating new Storage Account $(tfStateStorageAccount)..."
+          az storage account create --resource-group $(tfStateResourceGroup) --name $(tfStateStorageAccount) --sku Standard_LRS --encryption-services blob
+          tfBackendStorageKey=$(az storage account keys list --account-name $(tfStateStorageAccount) --resource-group $(tfStateResourceGroup) --query "[0].value" --output tsv)
+          echo "Creating new container $(tfStateContainerName) in Storage Account..."
+          az storage container create --name $(tfStateContainerName) --public-access off --account-name $(tfStateStorageAccount) --account-key $tfBackendStorageKey
+          az storage account update --allow-shared-key-access true --name $(tfStateStorageAccount) --resource-group $(tfStateResourceGroup)
+        fi
+
+- ${{ if eq(parameters.actionToTake, 'delete') }}:
+  # - task: Bash@3
+  #   displayName: Delete TF State Storage
+  #   env:
+  #     ARM_SUBSCRIPTION_ID: $(subscriptionId)
+  #     ARM_TENANT_ID: $(tenantId)
+  #     ARM_CLIENT_ID: $(clientId)
+  #     ARM_CLIENT_SECRET: $(clientSecret)
+  #   inputs:
+  #     targetType: 'inline'
+  #     script: |
+  - task: AzureCLI@2
+    displayName: Delete TF State Storage
+    inputs:
+      azureSubscription: $(serviceConnectionName)
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        echo "Deleting storage account $(tfStateStorageAccount)..."
+        az storage account delete --resource-group $(tfStateResourceGroup) --name $(tfStateStorageAccount) --yes
+        echo "Deleting resource group $(tfStateResourceGroup)..."
+        az group delete --name $(tfStateResourceGroup) --yes

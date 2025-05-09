@@ -1,10 +1,8 @@
 # ----------------------------------------------------------------------------------------------------
-# Variables common to all environments
+# Variables unique to PROD environment
 # ----------------------------------------------------------------------------------------------------
 variables:
-  - name: resourceGroupPrefix
-    value: 'rg-tf-demo'
-  - name: location
-    value: 'westus'
-  - name: appName
-    value: 'tfdemo'
+  - name: skuTier
+    value: 'Premium'
+  - name: skuSize
+    value: 'P1V2'

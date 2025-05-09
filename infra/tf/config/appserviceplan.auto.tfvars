@@ -74,13 +74,13 @@ app_services = {
 
 app_service_plans = {
   asp1 = {
-    name                         = "#{appName}-appsvcplan-#{env}#"
+    name                         = "#{appName}#-appsvcplan-#{env}#"
     kind                         = "Linux"
     reserved                     = true
     per_site_scaling             = false
     maximum_elastic_worker_count = 2
-    sku_tier                     = "Standard"
-    sku_size                     = "F1"
+    sku_tier                     = "#{skuTier}#"
+    sku_size                     = "#{skuSize}#"
     sku_capacity                 = 1
   }
 }
