@@ -35,13 +35,13 @@ variables:
 # ----------------------------------------------------------------------------------------------------
 jobs:
 - ${{ if eq(parameters.tfAction, 'plan') }}:
-  - template: ./templates/jobs/tf-plan-mi-template.yml
+  - template: ./templates/jobs/tf-plan-template.yml
     parameters:
       env: ${{ parameters.deployToEnvironment }}
       serviceConnectionName: $(serviceConnectionName)
 
 - ${{ if eq(parameters.tfAction, 'apply') }}:
-  - template: ./templates/jobs/tf-apply-mi-template.yml
+  - template: ./templates/jobs/tf-apply-template.yml
     parameters:
       env: ${{ parameters.deployToEnvironment }}
       serviceConnectionName: $(serviceConnectionName)

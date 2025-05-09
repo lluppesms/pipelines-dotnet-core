@@ -33,7 +33,7 @@ variables:
 
 # ----------------------------------------------------------------------------------------------------
 jobs:
-- template: ./templates/jobs/tf-apply-mi-template.yml
+- template: ./templates/jobs/tf-apply-template.yml
   parameters:
     env: ${{ parameters.deployToEnvironment }}
     pipelineResourceIdentifier: 'terraform.plan.pipeline'
