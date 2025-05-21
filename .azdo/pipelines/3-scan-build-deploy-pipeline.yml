@@ -21,7 +21,7 @@ parameters:
 stages:
 - stage: ScanStage
   jobs:
-  - template: ./azdo/pipelines/templates/steps/scan-code-template.yml
+  - template: ./.azdo/pipelines/templates/steps/scan-code-template.yml
   
 # ----------------------------------------------------------------------------------------------------
 - stage: BuildStage

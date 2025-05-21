@@ -72,7 +72,7 @@ Insert this code before the “stage: build” line – this will create a new s
 ``` yaml
 - stage: ScanStage
   jobs:
-  - template: ./azdo/pipelines/templates/steps/scan-code-template.yml
+  - template: ./.azdo/pipelines/templates/steps/scan-code-template.yml
 ```
 
 When you click `Validate and Save`, you may get this error if you haven’t installed the extension yet:
